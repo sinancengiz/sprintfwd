@@ -20,3 +20,9 @@ member5 = Member.create(first_name: 'Maria', last_name:'Sharapova', city:'San Fr
 project1 = Project.create(name: 'World Cup')
 project2 = Project.create(name: 'Olympics')
 project3 = Project.create(name: 'UEFA')
+
+member_project1 = MemberProject.create(member_id: member1.id, project_id: project1.id)
+member_project2 = MemberProject.create(member_id: member2.id, project_id: project1.id)
+member_project3 = MemberProject.create(member_id: member3.id, project_id: project1.id)
+member_project4 = MemberProject.create(member_id: member4.id, project_id: project2.id)
+member_project5 = MemberProject.create(member_id: member5.id, project_id: project2.id)
