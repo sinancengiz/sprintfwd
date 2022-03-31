@@ -113,6 +113,25 @@ paths:
       responses:
         '200':
           description: Return member deleted
+  "/api/v1/members/{member_id}/update_team/{team_id}":
+    put:
+      summary: Update team of a member
+      tags:
+      - Members
+      parameters:
+      - name: member_id
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: team_id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Updated member
   "/api/v1/projects":
     get:
       summary: Retrieve all projects

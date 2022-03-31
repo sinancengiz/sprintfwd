@@ -91,6 +91,23 @@ describe 'Members' do
     end
   end
 
+  path "/api/v1/members/{member_id}/update_team/{team_id}" do
+    put 'Update team of a member' do
+      tags 'Members'
+      consumes 'application/json'
+      parameter name: :member_id, in: :path, type: :integer, required: true
+      parameter name: :team_id, in: :path, type: :integer, required: true
+      
+      response '200', 'Updated member' do
+        let!(:member) { Member.create(fisrt_name: 'Test member 4')  }
+        let!(:team2) { Team.create(name: 'Test Team 2') }
+        let!(:member_id) { member.id }
+        let!(:team_id) { team2.id }
+        run_test!
+      end
+    end
+  end
+
   path "/api/v1/members/{id}" do
     delete 'Delete a member' do
       tags 'Members'

@@ -1,5 +1,5 @@
 class Api::V1::MembersController < ApplicationController
-    before_action :set_member, only: [:show, :edit, :update, :destroy, :update_team]
+    before_action :set_member, only: [:show, :edit, :update, :destroy]
     before_action :set_team, only: [:update_team]
 
     def index
@@ -40,6 +40,7 @@ class Api::V1::MembersController < ApplicationController
     end
 
     def update_team
+        @member = Member.find(params[:member_id])
         @member.team_id = @team.id
         if @member.save
             render json: @member
