@@ -37,11 +37,17 @@ class Api::V1::TeamsController < ApplicationController
         end
       end
 
+    
+    def team_members
+        @team = Team.find(params[:team_id])
+        render json: @team.members
+    end
+
     private
 
     def set_team
         begin
-            @team = Team.find(params[:id])
+            @team = Team.find(params[:id]) 
         rescue
             render json: { error: "Team not found" }, status: 422
         end
