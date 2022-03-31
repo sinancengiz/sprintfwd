@@ -22,6 +22,24 @@ describe 'projects' do
     end
   end
 
+  path "/api/v1/projects/{project_id}/members" do
+    get 'Retrieve all members of a project' do
+      tags 'Projects'
+      produces 'application/json'
+      parameter name: :project_id, in: :path, type: :string
+
+      response '200', 'Return information based on query' do
+        let(:team) { Team.create(name: 'Test team ') }
+        let(:project) { Project.create(name: 'Test project 4') }
+        let(:member) { Member.create(first_name: 'Test member', last_name:"last name", team_id: team.id).id }
+        let(:project_member) {ProjectMember.create(project_id: project.id, member_id: member.id)} 
+        let(:project_id) {:project.id}
+        let(:member_id) {:member.id}
+        run_test! 
+      end
+    end
+  end
+
   path '/api/v1/projects/{id}' do
 
     get 'Retrieves a project' do
