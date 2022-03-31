@@ -42,6 +42,20 @@ describe 'Teams' do
     end
   end
 
+  path '/api/v1/teams/{team_id}/members' do
+
+    get 'Retrieves members of a team' do
+      tags 'Teams'
+      produces 'application/json', 'application/xml'
+      parameter name: :team_id, in: :path, type: :string
+
+      response '200', 'team found' do
+        let(:id) { Team.create(name: 'Test Team 4').id }
+        run_test!
+      end
+    end
+  end
+
   path '/api/v1/teams' do
     post 'Creates a team' do
       tags 'Teams'

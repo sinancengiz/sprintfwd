@@ -310,6 +310,20 @@ paths:
       responses:
         '200':
           description: Return team deleted
+  "/api/v1/teams/{team_id}/members":
+    get:
+      summary: Retrieves members of a team
+      tags:
+      - Teams
+      parameters:
+      - name: team_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: team found
 servers:
 - url: http://127.0.0.1:3000
   variables:
