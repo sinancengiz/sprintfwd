@@ -10,6 +10,12 @@ Bundle install
 
 * bundle install
 
+Create Database
+* rails db:create
+* rails db:migrate
+* rails db:seed
+
+
 Run Server
 * rails s
 
