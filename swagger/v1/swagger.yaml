@@ -19,7 +19,7 @@ paths:
       parameters: []
       responses:
         '200':
-          description: Created contact
+          description: Created member
       requestBody:
         content:
           application/json:
@@ -55,7 +55,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                type: array
                 properties:
                   id:
                     type: integer
@@ -63,7 +63,7 @@ paths:
                 - id
             application/xml:
               schema:
-                type: object
+                type: array
                 properties:
                   id:
                     type: integer
