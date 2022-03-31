@@ -5,16 +5,21 @@ info:
   version: v1
 paths:
   "/api/v1/teams":
+    get:
+      summary: Retrieve all teams
+      tags:
+      - Teams
+      responses:
+        '200':
+          description: Return information based on query
     post:
       summary: Creates a team
       tags:
       - Teams
       parameters: []
       responses:
-        '201':
-          description: team created
-        '422':
-          description: invalid request
+        '200':
+          description: Created contact
       requestBody:
         content:
           application/json:
@@ -23,14 +28,11 @@ paths:
               properties:
                 name:
                   type: string
-              required:
-              - name
-  "/blogs/{id}":
+  "/api/v1/teams/{id}":
     get:
-      summary: Retrieves a blog
+      summary: Retrieves a team
       tags:
-      - Blogs
-      - Another Tag
+      - Teams
       parameters:
       - name: id
         in: path
@@ -39,7 +41,7 @@ paths:
           type: string
       responses:
         '200':
-          description: blog found
+          description: team found
           content:
             application/json:
               schema:
@@ -47,32 +49,50 @@ paths:
                 properties:
                   id:
                     type: integer
-                  title:
-                    type: string
-                  content:
-                    type: string
                 required:
                 - id
-                - title
-                - content
             application/xml:
               schema:
                 type: object
                 properties:
                   id:
                     type: integer
-                  title:
-                    type: string
-                  content:
-                    type: string
                 required:
                 - id
-                - title
-                - content
-        '404':
-          description: blog not found
-        '406':
-          description: unsupported accept header
+    put:
+      summary: Update team
+      tags:
+      - Teams
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Updated Team
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+    delete:
+      summary: Delete a Team
+      tags:
+      - Teams
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Return team deleted
 servers:
 - url: http://127.0.0.1:3000
   variables:

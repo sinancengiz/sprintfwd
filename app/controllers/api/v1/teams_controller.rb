@@ -40,7 +40,11 @@ class Api::V1::TeamsController < ApplicationController
     private
 
     def set_team
-      @team = Team.find(params[:id])
+        begin
+            @team = Team.find(params[:id])
+        rescue
+            render json: { error: "Team not found" }, status: 422
+        end
     end
   
     # Only allow a list of trusted parameters through.
