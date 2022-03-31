@@ -1,5 +1,6 @@
 class Api::V1::ProjectsController < ApplicationController
-    before_action :set_project, only: [:show, :edit, :update, :destroy]
+    before_action :set_project, only: [:show, :edit, :update, :destroy, :add_member]
+    before_action :set_member, only: [:add_member]
 
     def index
         @projects = Project.all
@@ -43,10 +44,8 @@ class Api::V1::ProjectsController < ApplicationController
     end
 
     def add_member
-        @member = Member.find(params[:member_id])
-        @project = Project.find(params[:project_id])
         if @member && @project
-            @project << @member
+            @project.members << @member
             render json: { success: "The member is added to the project" }
         else
             render json: { error: "Member could not be added the project" }, status: 422
@@ -57,9 +56,21 @@ class Api::V1::ProjectsController < ApplicationController
 
     def set_project
         begin
-            @project = Project.find(params[:id])
+            if params[:project_id]
+                @project = Project.find(params[:project_id])
+            else
+                @project = Project.find(params[:id])
+            end
         rescue
             render json: { error: "Project not found" }, status: 422
+        end
+    end
+
+    def set_member
+        begin
+            @member = Member.find(params[:member_id])
+        rescue
+            render json: { error: "Member not found" }, status: 422
         end
     end
   

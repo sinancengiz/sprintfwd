@@ -78,6 +78,25 @@ describe 'projects' do
     end
   end
 
+  path '/api/v1/projects/{project_id}/members/{member_id}' do
+    post 'Add a member to a project' do
+      tags 'Projects'
+      consumes 'application/json'
+      parameter name: :project_id, in: :path, type: :string
+      parameter name: :member_id, in: :path, type: :string
+
+      response '200', 'Created contact' do
+        let(:team) { Team.create(name: 'Test team ') }
+        let(:project) { Project.create(name: 'Test project 4') }
+        let(:member) { Member.create(first_name: 'Test member', last_name:"last name", team_id: team.id).id }
+        let(:project_member) {ProjectMember.create(project_id: project.id, member_id: member.id)} 
+        let(:project_id) {:project.id}
+        let(:member_id) {:member.id}
+        run_test!
+      end
+    end
+  end
+
   path "/api/v1/projects/{id}" do
     put 'Update project' do
       tags 'Projects'

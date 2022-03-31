@@ -235,6 +235,25 @@ paths:
       responses:
         '200':
           description: Return project deleted
+  "/api/v1/projects/{project_id}/members/{member_id}":
+    post:
+      summary: Add a member to a project
+      tags:
+      - Projects
+      parameters:
+      - name: project_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: member_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Created contact
   "/api/v1/teams":
     get:
       summary: Retrieve all teams
