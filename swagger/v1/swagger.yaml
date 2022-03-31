@@ -4,6 +4,105 @@ info:
   title: API V1
   version: v1
 paths:
+  "/api/v1/members":
+    get:
+      summary: Retrieve all members
+      tags:
+      - Members
+      responses:
+        '200':
+          description: Return information based on query
+    post:
+      summary: Creates a member
+      tags:
+      - Members
+      parameters: []
+      responses:
+        '200':
+          description: Created contact
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                first_name:
+                  type: string
+                last_name:
+                  type: string
+                city:
+                  type: string
+                state:
+                  type: string
+                country:
+                  type: string
+                team_id:
+                  type: integer
+  "/api/v1/members/{id}":
+    get:
+      summary: Retrieves a member
+      tags:
+      - Members
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: member found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                required:
+                - id
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                required:
+                - id
+    put:
+      summary: Update member
+      tags:
+      - Members
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Updated member
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                first_name:
+                  type: string
+    delete:
+      summary: Delete a member
+      tags:
+      - Members
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Return member deleted
   "/api/v1/teams":
     get:
       summary: Retrieve all teams

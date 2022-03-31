@@ -11,6 +11,7 @@ class Api::V1::MembersController < ApplicationController
     end
 
     def create
+        byebug
         @member = Member.new(member_params)
         if @member.save
             render json: @member
@@ -49,6 +50,6 @@ class Api::V1::MembersController < ApplicationController
   
     # Only allow a list of trusted parameters through.
     def member_params
-      params.permit(:fisrt_name, :last_name, :city, :state, :country, :team_id)
+      params.permit(:first_name, :last_name, :city, :state, :country, :team_id)
     end
 end
