@@ -10,7 +10,10 @@ Rails.application.routes.draw do
       resources :members do
         put "/update_team/:team_id", to: 'members#update_team'
       end
-      resources :projects
+      resources :projects do
+        get "/members", to: 'projects#project_members'
+        post "/members/:member_id", to: 'projects#add_member'
+      end
     end
   end
 end

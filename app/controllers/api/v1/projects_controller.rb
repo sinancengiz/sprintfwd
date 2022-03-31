@@ -37,6 +37,22 @@ class Api::V1::ProjectsController < ApplicationController
         end
       end
 
+    def project_members
+        @project = Project.find(params[:project_id])
+        render json: @project.members
+    end
+
+    def add_member
+        @member = Member.find(params[:member_id])
+        @project = Project.find(params[:project_id])
+        if @member && @project
+            @project << @member
+            render json: { success: "The member is added to the project" }
+        else
+            render json: { error: "Member could not be added the project" }, status: 422
+        end
+    end
+
     private
 
     def set_project
