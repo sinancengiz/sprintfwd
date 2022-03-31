@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :teams
       resources :members
+      resources :projects
     end
   end
 end
