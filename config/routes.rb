@@ -5,14 +5,14 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       resources :teams do
-        get "/members", to: 'teams#team_members'
+        get '/members', to: 'teams#team_members'
       end
       resources :members do
-        put "/update_team/:team_id", to: 'members#update_team'
+        put '/update_team/:team_id', to: 'members#update_team'
       end
       resources :projects do
-        get "/members", to: 'projects#project_members'
-        post "/members/:member_id", to: 'projects#add_member'
+        get '/members', to: 'projects#project_members'
+        post '/members/:member_id', to: 'projects#add_member'
       end
     end
   end
