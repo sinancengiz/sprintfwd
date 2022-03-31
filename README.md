@@ -1,24 +1,21 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is the sprintFWD project.
 
-Things you may want to cover:
+Clone the project:
 
-* Ruby version
+* git clone https://github.com/sinancengiz/sprintfwd.git
 
-* System dependencies
+Bundle install
 
-* Configuration
+* bundle install
 
-* Database creation
+Run Server
+* rails s
 
-* Database initialization
+Navigate to api-docs in local host
+* http://127.0.0.1:3000/api-docs/index.html
 
-* How to run the test suite
+![Screenshot from 2022-03-30 23-07-04](https://user-images.githubusercontent.com/27401425/160987906-4d9a144f-23b1-4506-beb6-3e17fc14768c.png)
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
-
-* ...
