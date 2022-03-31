@@ -16,3 +16,7 @@ member2 = Member.create(first_name: 'Mike', last_name:'Sharapova', city:'San Fra
 member3 = Member.create(first_name: 'Joe', last_name:'Messi', city:'San Francisco', state:'CA', country:"USA", team_id:team1.id)
 member4 = Member.create(first_name: 'Henry', last_name:'White', city:'San Francisco', state:'CA', country:"USA", team_id:team2.id)
 member5 = Member.create(first_name: 'Maria', last_name:'Sharapova', city:'San Francisco', state:'CA', country:"USA", team_id:team2.id)
+
+project1 = Project.create(name: 'World Cup')
+project2 = Project.create(name: 'Olympics')
+project3 = Project.create(name: 'UEFA')
