@@ -31,13 +31,13 @@ describe 'Members' do
       parameter name: :id, in: :path, type: :string
 
       response '200', 'member found' do
-        schema type: :object,
+        schema type: :array,
           properties: {
             id: { type: :integer },
           },
           required: [ 'id' ]
 
-        let(:id) { Member.create(name: 'Test Member 4').id }
+        let(:id) { Member.create(first_name: 'Test Member 4').id }
         run_test!
       end
     end
@@ -59,8 +59,8 @@ describe 'Members' do
         },
       }
 
-      response '200', 'Created contact' do
-        let!(:member) { Member.create(first_name: 'Test Member 4')  }
+      response '200', 'Created member' do
+        let!(:member) { Member.create(first_name: 'Test Member 4', last_name: "last name", team_id: team.id)  }
         run_test!
       end
     end
@@ -84,7 +84,7 @@ describe 'Members' do
       }
 
       response '200', 'Updated member' do
-        let!(:member) { Member.create(fisrt_name: 'Test member 4')  }
+        let!(:member) { Member.create(first_name: 'Test member 4', last_name: "last name", team_id: team.id)  }
         let!(:id) { member.id }
         run_test!
       end
@@ -99,7 +99,7 @@ describe 'Members' do
       parameter name: :team_id, in: :path, type: :integer, required: true
       
       response '200', 'Updated member' do
-        let!(:member) { Member.create(fisrt_name: 'Test member 4')  }
+        let!(:member) { Member.create(first_name: 'Test member 4', last_name: "last name", team_id: team.id)  }
         let!(:team2) { Team.create(name: 'Test Team 2') }
         let!(:member_id) { member.id }
         let!(:team_id) { team2.id }
@@ -117,7 +117,7 @@ describe 'Members' do
 
 
       response '200', 'Return member deleted' do
-        let!(:member) { Member.create(name: 'Test Member 4')  }
+        let!(:member) { Member.create(first_name: 'Test Member 4', last_name: "last name", team_id: team.id)  }
         let(:id) { member.id }
         run_test!
       end

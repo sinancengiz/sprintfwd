@@ -4,6 +4,8 @@ describe 'projects' do
   let!(:project1) { Project.create(name: 'Test project 1') }
   let!(:project2) { Project.create(name: 'Test project 2') }
   let!(:project3) { Project.create(name: 'Test project 3') }
+  let!(:team) { Team.create(name: 'Test team ') }
+  let!(:member) { Member.create(first_name: 'Test member', last_name:"last name", team_id: team.id)}
 
   path "/api/v1/projects" do
     get 'Retrieve all projects' do
@@ -29,12 +31,9 @@ describe 'projects' do
       parameter name: :project_id, in: :path, type: :string
 
       response '200', 'Return information based on query' do
-        let(:team) { Team.create(name: 'Test team ') }
-        let(:project) { Project.create(name: 'Test project 4') }
-        let(:member) { Member.create(first_name: 'Test member', last_name:"last name", team_id: team.id).id }
-        let(:project_member) {ProjectMember.create(project_id: project.id, member_id: member.id)} 
-        let(:project_id) {:project.id}
-        let(:member_id) {:member.id}
+        let(:project_member) {ProjectMember.create(project_id: project1.id, member_id: member.id)} 
+        let(:project_id) {project1.id}
+        let(:member_id) {member.id}
         run_test! 
       end
     end
@@ -86,12 +85,9 @@ describe 'projects' do
       parameter name: :member_id, in: :path, type: :string
 
       response '200', 'Created contact' do
-        let(:team) { Team.create(name: 'Test team ') }
-        let(:project) { Project.create(name: 'Test project 4') }
-        let(:member) { Member.create(first_name: 'Test member', last_name:"last name", team_id: team.id).id }
-        let(:project_member) {ProjectMember.create(project_id: project.id, member_id: member.id)} 
-        let(:project_id) {:project.id}
-        let(:member_id) {:member.id}
+        let(:project_member) {ProjectMember.create(project_id: project1.id, member_id: member.id)} 
+        let(:project_id) {project1.id}
+        let(:member_id) {member.id}
         run_test!
       end
     end

@@ -12,7 +12,6 @@ class Api::V1::MembersController < ApplicationController
     end
 
     def create
-        byebug
         @member = Member.new(member_params)
         if @member.save
             render json: @member

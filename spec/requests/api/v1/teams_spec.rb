@@ -50,7 +50,7 @@ describe 'Teams' do
       parameter name: :team_id, in: :path, type: :string
 
       response '200', 'team found' do
-        let(:id) { Team.create(name: 'Test Team 4').id }
+        let(:team_id) { Team.create(name: 'Test Team 4').id }
         run_test!
       end
     end
