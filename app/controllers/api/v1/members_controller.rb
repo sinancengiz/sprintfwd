@@ -1,5 +1,6 @@
 class Api::V1::MembersController < ApplicationController
-    before_action :set_member, only: [:show, :edit, :update, :destroy]
+    before_action :set_member, only: [:show, :edit, :update, :destroy, :update_team]
+    before_action :set_team, only: [:update_team]
 
     def index
         @members = Member.all
@@ -36,7 +37,16 @@ class Api::V1::MembersController < ApplicationController
         else
           render json: { error: "Member could not be deleted" }, status: 422
         end
-      end
+    end
+
+    def update_team
+        @member.team_id = @team.id
+        if @member.save
+            render json: @member
+        else
+            render json: @member.errors.full_messages, status: 422
+        end
+    end
 
     private
 
@@ -45,6 +55,14 @@ class Api::V1::MembersController < ApplicationController
             @member = Member.find(params[:id])
         rescue
             render json: { error: "Member not found" }, status: 422
+        end
+    end
+
+    def set_team
+        begin
+            @team = Team.find(params[:team_id])
+        rescue
+            render json: { error: "Team not found" }, status: 422
         end
     end
   

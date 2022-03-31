@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       resources :teams
-      resources :members
+      resources :members do
+        put "/update_team/:team_id", to: 'members#update_team'
+      end
       resources :projects
     end
   end
